@@ -51,3 +51,24 @@ void Game::PrintGame()
 	cout << goalDifference << " ";
 	cout << result << endl;
 }
+
+int Game::GetYear()
+{
+	return this->season;
+}
+
+string Game::GetAwayTeam()
+{
+	return this->visitor;
+}
+
+string Game::GetHomeTeam()
+{
+	return this->homeTeam;
+}
+
+void Game::PrintYear()
+{
+	cout << this->season << endl;
+}
+

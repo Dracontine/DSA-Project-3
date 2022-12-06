@@ -29,6 +29,13 @@ public:
 		string _division, int _tier, int _totalGoals, int _goalDifference, string _result);
 
 	void PrintGame();
+	void PrintYear();
+
+	int GetYear();
+	string GetAwayTeam();
+	string GetHomeTeam();
+
+
 
 };
 
