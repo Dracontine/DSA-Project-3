@@ -410,65 +410,240 @@ int main()
     // This vector will hold all the games from the csv file
 
     vector<Game> games;
-    vector<Game> homeGames;
-    vector<Game> awayGames;
-    vector<Game> yearGames;
-    vector<Game> specificGames;
+    
 
+    // Reading data from the csv file that contains the desired information
     ReadFile("england.csv", games);
 
     string homeTeam;
     string awayTeam;
     string year;
 
-    // MergeSort(games, 0, games.size() - 1);
-
-    // QuickSortAway(games, 0, games.size() - 1);
-
-    // QuickSortHome(games, 0, games.size() - 1);
-
-    // homeGames = FilterHomeGames("Everton", games);
-
-    // awayGames = FilterAwayGames("Everton", games);
-
-    // yearGames = FilterByYear("2021", games);
-
-    // specificGames = FilterByAll("Manchester United", "Manchester City", "2020", games);
-
-    // specificGames = FilterHomeAway("Manchester United", "Manchester City", games);
-
-    // specificGames = FilterHomeYear("Manchester United", "2000", games);
-
-    specificGames = FilterAwayYear("Manchester United", "2000", games);
-        
-    for (int i = 0; i < specificGames.size(); i++)
-    {
-        specificGames[i].PrintGame();
-    }
+    int option;
+    int option2;
     
-
-    /*
-    for (int i = 0; i < games.size(); i++)
-    {
-        games[i].PrintGame();
-    }
-    */
-
-    /*
     while (true)
     {
-        cout << "Enter Home Team : " << endl;
-        cin >> homeTeam;
+        cout << "1. Home Team Only" << endl;
+        cout << "2. Away Team Only" << endl;
+        cout << "3. Year Only" << endl;
+        cout << "4. Home Team and Away Team" << endl;
+        cout << "5. Home Team and Year" << endl;
+        cout << "6. Away Team and Year" << endl;
+        cout << "7. Home Team, Away Team, and Year" << endl;
+        cout << "8. Exit" << endl;
 
-        cout << "Enter Away Team : " << endl;
-        cin >> awayTeam;
+        cin >> option;
 
-        cout << "Enter Year : " << endl;
-        cin >> year;
+        if (option == 1)
+        {    
+            string homeTeam;
 
-        break;
+            cout << "Enter Home Team Name : \n";
+
+            getline(cin >> ws, homeTeam);
+            
+            vector<Game> homeGames = FilterHomeGames(homeTeam, games);
+
+
+            cout << "1. Lexicographic sort (Names of opponents)" << endl;
+            cout << "2. Sort by Year" << endl;
+      
+            while (true)
+            {
+                cin >> option2;
+
+                if (option2 == 1)
+                    break;
+                else if (option2 == 2)
+                    break;
+                else
+                {
+                    cout << "Not a valid option! Please choose either 1 or 2" << endl;
+                }
+                
+            }
+            
+            if (option2 == 1)
+            {
+                QuickSortAway(homeGames, 0, homeGames.size() - 1);
+            }
+            else if (option2 == 2)
+            {
+                MergeSort(homeGames, 0, homeGames.size() - 1);
+            }
+
+            cout << "Printing Games : " << endl;
+
+            for (auto x : homeGames)
+            {
+                x.PrintGame();
+            }
+
+            cout << endl;
+    
+        }
+        else if (option == 2)
+        {
+            cout << "Enter Away Team Name : " << endl;
+
+            getline(cin >> ws, awayTeam);
+
+            cin >> awayTeam;
+
+            vector<Game> awayGames = FilterAwayGames(awayTeam, games);
+
+            cout << "1. Lexicographic sort (By the names of opponents)" << endl;
+            cout << "2. Sort by Year" << endl;
+
+            while (true)
+            {
+                cin >> option2;
+
+                if (option2 == 1)
+                    break;
+                else if (option2 == 2)
+                    break;
+                else
+                {
+                    cout << "Not a valid option! Please choose either 1 or 2" << endl;
+                }
+            }
+
+            if (option2 == 1)
+            {
+                QuickSortAway(awayGames, 0, awayGames.size() - 1);
+            }
+            else if (option2 == 2)
+            {
+                MergeSort(awayGames, 0, awayGames.size() - 1);
+            }
+
+            cout << "Printing Games : " << endl;
+
+            for (auto x : awayGames)
+            {
+                x.PrintGame();
+            }
+
+            cout << endl;
+
+        }
+        else if (option == 3)
+        {
+            cout << "Enter Year (1888 - 2021): " << endl;
+            
+            while (true)
+            {
+                cin >> year;
+
+                for (auto x : year)
+                {
+                    if (isdigit(x) == false)
+                    {
+                        cout << "Please enter a valid year between 1888 and 2021" << endl;
+                        continue;
+                    }
+                        
+                }
+
+                if (stoi(year) >= 1888 && stoi(year) <= 2021)
+                {
+                    break;
+                }
+                else
+                {
+                    cout << "Please enter a valid year between 1888 and 2021" << endl;
+                }
+            }
+
+            vector<Game> yearGames = FilterByYear(year, games);
+
+            cout << "1. Lexicographic sort (By Home Team Names)" << endl;
+            cout << "2. Lexicographic sort (By Away Team Names)" << endl;
+
+            while (true)
+            {
+                cin >> option2;
+
+                if (option2 == 1)
+                    break;
+                else if (option2 == 2)
+                    break;
+                else
+                {
+                    cout << "Not a valid option! Please choose either 1 or 2" << endl;
+                }
+            }
+
+            if (option2 == 1)
+            {
+                QuickSortHome(yearGames, 0, yearGames.size() - 1);
+            }
+            else if (option2 == 2)
+            {
+                QuickSortAway(yearGames, 0, yearGames.size() - 1);
+            }
+
+            cout << "Printing Games : " << endl;
+
+            for (auto x : yearGames)
+            {
+                x.PrintGame();
+            }
+
+            cout << endl;
+
+        }
+        else if (option == 4)
+        {
+            cout << "Enter Home Team Name : " << endl;
+
+            getline(cin >> ws, homeTeam);
+            
+
+            cout << "Enter Away Team Name : " << endl;
+
+            getline(cin >> ws, awayTeam);
+            
+            vector<Game> specificGames = FilterHomeAway(homeTeam, awayTeam, games);
+           
+            cout << "Printing Games : " << endl;
+
+            for (auto x : specificGames)
+            {
+                x.PrintGame();
+            }
+
+            cout << endl;
+         
+        }
+        else if (option == 5)
+        {
+
+        }
+        else if (option == 6)
+        {
+
+        }
+        else if (option == 7)
+        {
+           
+        }
+        else if (option == 8)
+        {
+            break;
+        }
+        else
+        {
+            cout << "Not a valid input! Please input a number between 1 and 8!!" << endl;
+        }
 
     }
-    */
+    
+    cout << endl;
+    cout << "Thank you for using the FindFootball application" << endl;
+
+    return 0;
     
 }
