@@ -38,17 +38,11 @@ Game::Game(string _date, int _season, string _homeTeam, string _visitor, string 
 
 void Game::PrintGame()
 {
-	cout << date << " ";
-	cout << season << " ";
-	cout << homeTeam << " ";
-	cout << visitor << " ";
-	cout << finalScore << " ";
-	cout << homeGoals << " ";
-	cout << visitorGoals << " ";
-	cout << division << " ";
-	cout << tier << " ";
-	cout << totalGoals << " ";
-	cout << goalDifference << " ";
+	cout << date << " | ";
+	cout << season << " | ";
+	cout << homeTeam << " | ";
+	cout << visitor << " | ";
+	cout << finalScore << " | ";
 	cout << result << endl;
 }
 

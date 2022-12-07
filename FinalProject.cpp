@@ -424,6 +424,7 @@ int main()
     
     while (true)
     {
+        cout << "FindFootball" << endl;
         cout << "1. Home Team Only" << endl;
         cout << "2. Away Team Only" << endl;
         cout << "3. Year Only" << endl;
@@ -473,14 +474,23 @@ int main()
                 MergeSort(homeGames, 0, homeGames.size() - 1);
             }
 
-            cout << "Printing Games : " << endl;
-
-            for (auto x : homeGames)
+            if (homeGames.size() == 0)
             {
-                x.PrintGame();
+                cout << "No games found!!" << endl;
+            }
+            else
+            {
+                cout << "Printing Games : " << endl;
+
+                for (auto x : homeGames)
+                {
+                    x.PrintGame();
+                }    
+
             }
 
             cout << endl;
+            
     
         }
         else if (option == 2)
@@ -519,12 +529,20 @@ int main()
                 MergeSort(awayGames, 0, awayGames.size() - 1);
             }
 
-            cout << "Printing Games : " << endl;
 
-            for (auto x : awayGames)
+            if (awayGames.size() == 0)
             {
-                x.PrintGame();
+                cout << "No games found!!" << endl;
             }
+            else
+            {
+                cout << "Printing Games : " << endl;
+
+                for (auto x : awayGames)
+                {
+                    x.PrintGame();
+                }
+            }         
 
             cout << endl;
 
@@ -535,7 +553,7 @@ int main()
             
             while (true)
             {
-                cin >> year;
+                getline(cin >> ws, year);
 
                 for (auto x : year)
                 {
@@ -585,12 +603,20 @@ int main()
                 QuickSortAway(yearGames, 0, yearGames.size() - 1);
             }
 
-            cout << "Printing Games : " << endl;
-
-            for (auto x : yearGames)
+            if (yearGames.size() == 0)
             {
-                x.PrintGame();
+                cout << "No games found!!" << endl;
             }
+            else
+            {
+                cout << "Printing Games : " << endl;
+
+                for (auto x : yearGames)
+                {
+                    x.PrintGame();
+                }
+            }
+          
 
             cout << endl;
 
@@ -600,14 +626,70 @@ int main()
             cout << "Enter Home Team Name : " << endl;
 
             getline(cin >> ws, homeTeam);
-            
 
             cout << "Enter Away Team Name : " << endl;
 
             getline(cin >> ws, awayTeam);
             
             vector<Game> specificGames = FilterHomeAway(homeTeam, awayTeam, games);
-           
+
+            if (specificGames.size() == 0)
+            {
+                cout << "No games found!!" << endl;
+            }
+            else
+            {
+                cout << "Printing Games : " << endl;
+
+                for (auto x : specificGames)
+                {
+                    x.PrintGame();
+                }
+            }          
+
+            cout << endl;
+         
+        }
+        else if (option == 5)
+        {
+
+            cout << "Enter Home Team Name : " << endl;
+
+            getline(cin >> ws, homeTeam);
+
+            cout << "Enter Year (1888 - 2021): " << endl;
+
+            while (true)
+            {
+                getline(cin >> ws, year);
+
+                for (auto x : year)
+                {
+                    if (isdigit(x) == false)
+                    {
+                        cout << "Please enter a valid year between 1888 and 2021" << endl;
+                        continue;
+                    }
+
+                }
+
+                if (stoi(year) >= 1888 && stoi(year) <= 2021)
+                {
+                    break;
+                }
+                else
+                {
+                    cout << "Please enter a valid year between 1888 and 2021" << endl;
+                }
+            }
+
+            vector<Game> specificGames = FilterHomeYear(homeTeam, year, games);
+
+            if (specificGames.size() == 0)
+            {
+                cout << "No games found!!" << endl;
+            }
+
             cout << "Printing Games : " << endl;
 
             for (auto x : specificGames)
@@ -616,18 +698,112 @@ int main()
             }
 
             cout << endl;
-         
-        }
-        else if (option == 5)
-        {
 
         }
         else if (option == 6)
         {
+            cout << "Enter Away Team Name : " << endl;
+
+            getline(cin >> ws, awayTeam);
+
+            cout << "Enter Year (1888 - 2021): " << endl;
+
+            while (true)
+            {
+                getline(cin >> ws, year);
+
+                for (auto x : year)
+                {
+                    if (isdigit(x) == false)
+                    {
+                        cout << "Please enter a valid year between 1888 and 2021" << endl;
+                        continue;
+                    }
+
+                }
+
+                if (stoi(year) >= 1888 && stoi(year) <= 2021)
+                {
+                    break;
+                }
+                else
+                {
+                    cout << "Please enter a valid year between 1888 and 2021" << endl;
+                }
+            }
+
+            vector<Game> specificGames = FilterAwayYear(awayTeam, year, games);
+
+            if (specificGames.size() == 0)
+            {
+                cout << "No games found!!" << endl;
+            }
+            else
+            {
+                cout << "Printing Games : " << endl;
+
+                for (auto x : specificGames)
+                {
+                    x.PrintGame();
+                }
+            }
+
+            cout << endl;
 
         }
         else if (option == 7)
         {
+            cout << "Enter Home Team Name : " << endl;
+
+            getline(cin >> ws, homeTeam);
+
+            cout << "Enter Away Team Name : " << endl;
+
+            getline(cin >> ws, awayTeam);
+
+            cout << "Enter Year (1888 - 2021): " << endl;
+
+            while (true)
+            {
+                getline(cin >> ws, year);
+
+                for (auto x : year)
+                {
+                    if (isdigit(x) == false)
+                    {
+                        cout << "Please enter a valid year between 1888 and 2021" << endl;
+                        continue;
+                    }
+
+                }
+
+                if (stoi(year) >= 1888 && stoi(year) <= 2021)
+                {
+                    break;
+                }
+                else
+                {
+                    cout << "Please enter a valid year between 1888 and 2021" << endl;
+                }
+            }
+            
+            vector<Game> specificGames = FilterByAll(homeTeam, awayTeam, year, games);
+
+            if (specificGames.size() == 0)
+            {
+                cout << "No games found!!" << endl;
+            }
+            else
+            {
+                cout << "Printing Games : " << endl;
+
+                for (auto x : specificGames)
+                {
+                    x.PrintGame();
+                }
+            }
+
+            cout << endl;
            
         }
         else if (option == 8)
@@ -642,7 +818,7 @@ int main()
     }
     
     cout << endl;
-    cout << "Thank you for using the FindFootball application" << endl;
+    cout << "Thank you for using the FindFootball application!!" << endl;
 
     return 0;
     
